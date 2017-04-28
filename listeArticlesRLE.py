@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import urllib
 from bs4 import BeautifulSoup
 
