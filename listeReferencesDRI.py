@@ -3,7 +3,7 @@
 #----------------------------------------------------------
 # Récupération de la liste des références de la société DRI
 #----------------------------------------------------------
-import urllib.request
+from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
 # Analyse de la page
@@ -16,7 +16,7 @@ def chercheReferences(page):
 
 url = "https://www.dri.fr/references"
 try:
-    with urllib.request.urlopen(url) as response:
+    with urlopen(url) as response:
         webPage = BeautifulSoup(response.read(), "html.parser")
         chercheReferences(webPage)
 except urllib.error.URLError:
