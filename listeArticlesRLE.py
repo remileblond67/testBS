@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 # Analyse du contenu de la page
 def chercheArticles(page):
-  for article in webPage.find_all("article"):
+  for article in page.find_all("article"):
     titre = article.find('h1', attrs={'class':'entry-title'})
     categories = ''
     for catSpan in article.find('span', attrs={'class':'cat-links'}).find_all('a'):
