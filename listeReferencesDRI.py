@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # coding: utf-8
 #----------------------------------------------------------
 # Récupération de la liste des références de la société DRI
