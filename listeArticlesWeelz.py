@@ -1,8 +1,9 @@
 #!/usr/bin/python
-import urllib
+import urllib.request
 from bs4 import BeautifulSoup
 
-def chercheArticles():
+# Recherche les articles dans la page
+def chercheArticles(page):
   for article in page.find_all("article", attrs={'class':'postItem'}):
     titre = article.find(attrs={'class':'title'})
     try:
@@ -13,12 +14,18 @@ def chercheArticles():
 
 urlNext = "http://weelz.fr"
 
+# Parcours des pages du site
 while urlNext is not None:
-  page = BeautifulSoup(urllib.urlopen(urlNext))
-  chercheArticles()
-  next = page.find("li", attrs={'class': 'nav next'})
   try:
-    urlNext = next.find('a').get('href')
-  except AttributeError:
-    exit()
-
+      with urllib.request.urlopen(urlNext) as response:
+        webResponse = response.read()
+        webPage = BeautifulSoup(webResponse, "html.parser")
+        chercheArticles(webPage)
+        next = webPage.find("li", attrs={'class': 'nav next'})
+        if next is not None :
+            urlNext = next.find('a').get('href')
+        else:
+            urlNext = None
+  except urllib.error.URLError:
+      print ("Impossible d'ouvrir la page %s" % urlNext)
+      exit()
