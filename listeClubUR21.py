@@ -9,9 +9,7 @@ from bs4 import BeautifulSoup
 # Analyse de la page
 def chercheClub(page):
     for tableau in page.find_all("table", attrs={'class':'spip'}):
-        # print (tableau)
         for tbody in tableau.find_all("tbody"):
-            # print (tbody)
             for ligne in tbody.find_all("tr"):
                 nbCol = 1
                 for col in ligne.find_all("td"):
@@ -34,12 +32,6 @@ def chercheClub(page):
                         # print (emailClub)
                     
                     nbCol = nbCol+1
-        #             numClub = col[0]
-        #             print ("- %s" % numClub)
-        # # refNom = club.find('div', attrs={'class':'title'}).string.strip()
-        # refUrl = club.find('div', attrs={'class':'link'}).find('a').string.strip()
-
-        # print ("- %s (%s)" % (refNom, refUrl))
 
 url = "http://ur21.federation-photo.fr/photo-clubs/"
 try:
